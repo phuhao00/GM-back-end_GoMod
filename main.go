@@ -30,18 +30,18 @@ func Start() {
 		}
 	}()
 
-	Run(routers.Eng, "127.0.0.1:7070")
+	Run(routers.E, "127.0.0.1:7070")
 }
-
-
+//
 func Run(router *gin.Engine, serverHost string) {
 
 	server := &http.Server{
 		Addr:    serverHost,
 		Handler: router,
 	}
+
 	go func() {
-		for  {
+		for {
 			if err := server.ListenAndServe(); err != nil && err != http.ErrServerClosed {
 				log.Fatalf("listen: %s\n", err)
 			}

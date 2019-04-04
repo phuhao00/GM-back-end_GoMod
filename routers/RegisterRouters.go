@@ -5,13 +5,13 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
-var Eng *gin.Engine
+var E *gin.Engine
 
 func Init(){
 	RegisterAdminRouters()
 }
 func RegisterAdminRouters()  {
-	action:=Eng.Group("/")
+	action:= E.Group("/")
 	{
 		action:=action.Group("/admin")
 		{
