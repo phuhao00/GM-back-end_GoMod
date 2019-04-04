@@ -13,12 +13,11 @@ type RunMode struct {
 	Addr string
 	Port string
 }
-
 //
+var Mode  map[string]*RunMode
 func LoadRunMode()  {
 	data, _ := ioutil.ReadFile("conf/yaml/RunMode.yml")
-	var mode  map[string]*RunMode
-	error:=yaml.Unmarshal(data, &mode)
+	error:=yaml.Unmarshal(data, &Mode)
 	if error!=nil {
 		fmt.Println(error)
 	}

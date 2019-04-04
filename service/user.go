@@ -59,3 +59,13 @@ func NewUser(name, password string, roles []string, introduce string) (error, *U
 	MySql.Model(user).Association("Roles").Replace(rs)
 	return nil, user
 }
+
+func GetUserByToken(token string) *User {
+	var user User
+	MySql.Preload("Roles").First(&user, "token = ?", token)
+	return &user
+}
+
+func NewUserLog(log *UserLog) {
+	MySql.Create(log)
+}

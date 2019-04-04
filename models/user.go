@@ -24,3 +24,12 @@ type Role struct {
 	Name  string `gorm:"unique" json:"name"`
 	Users []User `gorm:"many2many:user_role" json:"users"`
 }
+
+type UserLog struct {
+	ID     int32     `gorm:"primary_key"`
+	Name   string    `json:"name"`
+	Time   time.Time `json:"time"`
+	Url    string    `json:"url"`
+	Ip     string    `json:"ip"`
+	Status int32     `json:"status"`
+}
