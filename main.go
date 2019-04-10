@@ -4,7 +4,7 @@ import (
 	"HA-back-end/DBMgr"
 	."HA-back-end/ServerMgr"
 	."HA-back-end/conf"
-	"HA-back-end/routers"
+	."HA-back-end/routers"
 	"fmt"
 	"runtime"
 )
@@ -21,7 +21,7 @@ func Start() {
 			fmt.Println(r)
 		}
 	}()
-
-	RunListenSystem(routers.E, Mode["Dev"].Addr+":"+Mode["Dev"].Port)
-	ServerManager.RunClient(Mode["Dev"].Addr)
+	routers:=InitRouter()
+	RunListenSystem(routers, Mode["Dev"].Addr+":"+Mode["Dev"].Port)
+	//ServerManager.RunClient(Mode["Dev"].Addr)
 }

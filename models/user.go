@@ -4,25 +4,17 @@ import "time"
 
 type User struct {
 	ID              int32      `gorm:"primary_key"`
-	Name        string     `gorm:"unique" json:"name"`
+	Username       string    	`gorm:"unique" json:"username"`
 	Password        string     `json:"password"`
-	Nick            string     `json:"nick"`
-	Token           string     `json:"token"`
-	TokenExpireTime *time.Time `json:"token_expire_time"`
-	Avatar          string     `json:"avatar"`
-	Introduction    string     `json:"introduction"`
-	Roles           []string     `gorm:"many2many:user_role" json:"roles"`
-	CreatedAt       time.Time  `json:"created_at"`
-	UpdatedAt       *time.Time `json:"updated_at"`
-	LoginTimes      int32      `json:"login_times"`
-	LastLoginIp     string     `json:"last_login_ip"`
+	User_sex		int32		`json:"user_sex"`
+	Nick_name            string     `json:"nick_name"`
 }
 
 type Role struct {
 	ID    int32  `gorm:"primary_key"`
 	Title string `gorm:"unique" json:"title"`
 	Name  string `gorm:"unique" json:"name"`
-	Users []User `gorm:"many2many:user_role" json:"users"`
+	Users []User `gorm:"many2many:user_role" json:"user"`
 }
 
 type UserLog struct {

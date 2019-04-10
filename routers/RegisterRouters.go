@@ -3,20 +3,18 @@ package routers
 import (
 	. "HA-back-end/routers/Test"
 	. "HA-back-end/routers/admin"
-	. "HA-back-end/routers/common"
 	"github.com/gin-gonic/gin"
 	"net/http"
 )
 
-var E *gin.Engine
 
-func Init(){
-
+func InitRouter() *gin.Engine{
+	var E *gin.Engine
 	E=gin.New()
-	E.Use(gin.Logger())
-	E.Use(gin.Recovery())
-	E.Use(CheckToken())
-	E.Use(Logger())
+	//E.Use(gin.Logger())
+	//E.Use(gin.Recovery())
+	//E.Use(CheckToken())
+	//E.Use(Logger())
 	E.NoRoute(func(c *gin.Context) {
 		c.JSON(http.StatusNotFound, gin.H{
 			"code": 404,
@@ -24,22 +22,23 @@ func Init(){
 		})
 		return
 	})
-	RegisterAdminRouters()
-	RegisterTestRouters()
+	RegisterAdminRouters(E)
+	RegisterTestRouters(E)
+	return E
 }
 //
-func RegisterTestRouters()  {
-	action:= E.Group("/")
+func RegisterTestRouters(E *gin.Engine)  {
+	action:= E.Group("/user")
 	{
 		action:=action.Group("/test")
 		{
-			action.POST("/1",Test)
+			action.POST("/hh",Test)
 		}
 	}
 }
 //
-func RegisterAdminRouters()  {
-	action:= E.Group("/")
+func RegisterAdminRouters(E *gin.Engine)  {
+	action:= E.Group("/user")
 	{
 		action:=action.Group("/admin")
 		{

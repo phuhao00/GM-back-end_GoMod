@@ -56,5 +56,4 @@ func (self *SManager) OnConnected(addr string, session *Session) {
 //
 func (self *SManager) OnPacket(packet *ClientPacket) {
 
-
 }

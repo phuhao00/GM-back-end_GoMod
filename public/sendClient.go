@@ -7,7 +7,7 @@ import (
 
 func JsonSuccess(c *gin.Context, data interface{}) {
 	c.JSON(http.StatusOK, gin.H{
-		"code": 20000,
+		"code": 200,
 		"message":  "ok",
 		"data": data,
 	})
