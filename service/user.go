@@ -4,7 +4,6 @@ import (
 	. "HA-back-end/DBMgr"
 	. "HA-back-end/models"
 	"HA-back-end/public"
-	"errors"
 )
 //
 func Login(name, password, ip string)(error,string)  {
@@ -12,36 +11,39 @@ func Login(name, password, ip string)(error,string)  {
 	MySql.Preload("userName").First(&user, "userName = ?", name)
 	MySql.Save(&user)
 	return nil, ""
-	return errors.New("login fail"), "vvv"
+	//return errors.New("login fail"), "vvv"
 }
 //
-func NewUser(name, password string, roles []string, introduce string) (error, *User) {
+func NewUser(name, password ,nickName string,gender int32) (error, *User) {
 	user := &User{
-		Username:      name,
-		Password: password,
+		Username:    name,
+		Password:	 password,
+		User_sex:  	 gender,
+		Nick_name:   nickName,
 	}
 	if len(user.Password) > 0 {
 		user.Password = public.Md5String(user.Password)
 	} else {
 		user.Password = public.Md5String(user.Username)
 	}
-	if len(introduce) > 0 {
-	}
-
 	dbc := MySql.FirstOrCreate(user, User{Username: user.Username})
 	if dbc.Error != nil {
 		return dbc.Error, nil
 	}
-	var rs []Role
-	for _, v := range roles {
-		var role Role
-		dbc = MySql.Preload("User").First(&role, "name = ?", v)
-		if dbc.Error != nil {
-			return dbc.Error, nil
-		}
-		rs = append(rs, role)
+	return nil, user
+}
+
+func UpdateUser(name string,ColumnName ,ColumnVal string) (error, *User) {
+	user := &User{	}
+	if len(user.Password) > 0 {
+		user.Password = public.Md5String(user.Password)
+	} else {
+		user.Password = public.Md5String(user.Username)
 	}
-	MySql.Model(user).Association("Roles").Replace(rs)
+	dbc:=MySql.Model(&user).Where("username = ?", name).Update(ColumnName, ColumnVal)
+	if dbc.Error != nil {
+		return dbc.Error, nil
+	}
 	return nil, user
 }
 

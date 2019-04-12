@@ -10,13 +10,6 @@ type User struct {
 	Nick_name            string     `json:"nick_name"`
 }
 
-type Role struct {
-	ID    int32  `gorm:"primary_key"`
-	Title string `gorm:"unique" json:"title"`
-	Name  string `gorm:"unique" json:"name"`
-	Users []User `gorm:"many2many:user_role" json:"user"`
-}
-
 type UserLog struct {
 	ID     int32     `gorm:"primary_key"`
 	Name   string    `json:"name"`

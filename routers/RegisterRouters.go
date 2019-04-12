@@ -44,6 +44,7 @@ func RegisterAdminRouters(E *gin.Engine)  {
 		{
 			action.POST("login",Login)
 			action.POST("register", CreateUser)
+			action.POST("update", Update)
 		}
 	}
 }

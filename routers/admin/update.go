@@ -5,11 +5,12 @@ import (
 	"HA-back-end/service"
 	"github.com/gin-gonic/gin"
 )
-func CreateUser(c *gin.Context) {
-	var request RegisterReq
+
+func Update(c *gin.Context)  {
+	var request UpdateReq
 	err := c.ShouldBindJSON(&request)
 	if err == nil {
-		err, user :=service.NewUser(request.Name, request.Password,request.Nick_name,request.User_sex); if err == nil {
+		err, user :=service.UpdateUser(request.Name,request.ColumnName,request.ColumnVal); if err == nil {
 			public.JsonSuccess(c, user)
 			return
 		}
