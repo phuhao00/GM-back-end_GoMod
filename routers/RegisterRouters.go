@@ -24,6 +24,7 @@ func InitRouter() *gin.Engine{
 	})
 	RegisterAdminRouters(E)
 	RegisterTestRouters(E)
+	RegisterCommon(E)
 	return E
 }
 //
@@ -46,5 +47,12 @@ func RegisterAdminRouters(E *gin.Engine)  {
 			action.POST("register", CreateUser)
 			action.POST("update", Update)
 		}
+	}
+}
+//
+func RegisterCommon(E *gin.Engine)  {
+	action:= E.Group("/common")
+	{
+		action.POST("getUserHavePlayGames",GetUserPlayedGames)
 	}
 }

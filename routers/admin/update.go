@@ -5,7 +5,7 @@ import (
 	"HA-back-end/service"
 	"github.com/gin-gonic/gin"
 )
-
+//
 func Update(c *gin.Context)  {
 	var request UpdateReq
 	err := c.ShouldBindJSON(&request)

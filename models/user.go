@@ -1,13 +1,13 @@
 package models
 
 import "time"
-
 type User struct {
-	ID              int32      `gorm:"primary_key"`
-	Username       string    	`gorm:"unique" json:"username"`
-	Password        string     `json:"password"`
-	User_sex		int32		`json:"user_sex"`
-	Nick_name            string     `json:"nick_name"`
+	ID             int          `gorm:"column:id;primary_key" json:"id"`
+	Username       string 		`gorm:"column:username" json:"username"`
+	Password       string 		`gorm:"column:password" json:"password"`
+	UserSex        int    		`gorm:"column:user_sex" json:"user_sex"`
+	NickName       string		`gorm:"column:nick_name" json:"nick_name"`
+	HavePlayGameID string 		`gorm:"column:havePlayGameId" json:"havePlayGameId"`
 }
 
 type UserLog struct {

@@ -46,7 +46,15 @@ func UpdateUser(name string,ColumnName ,ColumnVal string) (error, *User) {
 	}
 	return nil, user
 }
-
+//
+func GetGamesInfo( userName string) (error error, gameIds []int64) {
+	dbc:=MySql.Table("users").Select("havePlayGameId").Where("username=?",userName)
+	if dbc.Error != nil {
+		return dbc.Error,nil
+	}
+	return nil,  dbc.Value.([]int64)
+}
+//
 func GetUserByToken(token string) *User {
 	var user User
 	MySql.Preload("userName").First(&user, "token = ?", token)

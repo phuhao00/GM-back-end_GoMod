@@ -17,3 +17,6 @@ type UpdateReq struct {
 	ColumnName  string
 	ColumnVal  string
 }
+type GetUserHavePlayGamesReq struct {
+	Name      string `json:"name"`
+}
