@@ -21,10 +21,9 @@ var request	GameAddParamReq
 		}
 		error := service.InsertGame(game)
 		if error!=nil {
-			public.JsonSuccess(c, gin.H{"add game ": "success"})
+			public.JsonError(c, error)
 			return
 		}
-		public.JsonError(c, error)
-
+		public.JsonSuccess(c, gin.H{"add game ": "success"})
 	}
 }
