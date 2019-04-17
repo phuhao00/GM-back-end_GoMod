@@ -9,7 +9,7 @@ import (
 func Login(c *gin.Context)  {
 	var request LoginReq
 	err := c.ShouldBindJSON(&request)
-	if err == nil {
+		if err == nil {
 		err, token := service.Login(request.UserName, request.Password, c.ClientIP())
 		if err == nil {
 			if c.Keys == nil {

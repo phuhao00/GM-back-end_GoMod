@@ -26,3 +26,8 @@ func GetGameInfo(gameId int64) *Game  {
 	}
 	return game
 }
+
+func InsertGame(game *Game)(err error)  {
+	 DBMgr.MySql.Save(&game)
+	return nil
+}

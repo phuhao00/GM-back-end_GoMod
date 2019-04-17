@@ -20,3 +20,13 @@ type UpdateReq struct {
 type GetUserHavePlayGamesReq struct {
 	Name      string `json:"name"`
 }
+
+
+//game
+
+type GameAddParamReq struct {
+	Name string 	 `json:"name"`
+	Price int		 `json:"price"`
+	Url string		 `json:"url"`
+	SupplierId int   `json:"supplierId"`
+}

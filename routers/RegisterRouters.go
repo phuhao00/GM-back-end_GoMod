@@ -3,6 +3,7 @@ package routers
 import (
 	. "HA-back-end/routers/Test"
 	. "HA-back-end/routers/admin"
+	. "HA-back-end/routers/game"
 	"github.com/gin-gonic/gin"
 	"net/http"
 )
@@ -54,5 +55,6 @@ func RegisterCommon(E *gin.Engine)  {
 	action:= E.Group("/common")
 	{
 		action.POST("getUserHavePlayGames",GetUserPlayedGames)
+		action.POST("AddGame",AddGame)
 	}
 }
