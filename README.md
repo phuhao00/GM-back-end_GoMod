@@ -1,5 +1,9 @@
 # back-end - go mod
 
+## 描述：
+
+​	类似TapTap的网站后端
+
 ## 技术栈：
 
 ​	1.gorm ; 2.Gin
