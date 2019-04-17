@@ -5,6 +5,7 @@ import (
 	"HA-back-end/public"
 	"HA-back-end/service"
 	"github.com/gin-gonic/gin"
+	"strings"
 )
 
 //
@@ -16,8 +17,16 @@ func GetUserPlayedGames(c *gin.Context) {
 		if err!=nil {
 
 		}
+		var gameIdArr  []string
+		if gameIds!=""{
+			if strings.Contains(gameIds,",")  {
+				gameIdArr=strings.Split(gameIds,",")
+			}else {
+				gameIdArr=append(gameIdArr,gameIds)
+			}
+		}
 		var games []*Game =make([]*Game,0)
-		games=service.GetAllGameInfos(gameIds)
+		games=service.GetAllGameInfos(gameIdArr)
 		public.JsonSuccess(c, gin.H{"gamesInfo": games})
 	}
 }

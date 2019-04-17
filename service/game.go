@@ -2,18 +2,27 @@ package service
 
 import
 (
+	"HA-back-end/DBMgr"
 	."HA-back-end/models"
+	"strconv"
 )
 //
-func GetAllGameInfos(gameIds []int64)[]*Game  {
-	for _,ele:=range gameIds{
-		GetGameInfo(ele)
+func GetAllGameInfos(gameIdArr []string)(gamesInfo []*Game)  {
+	gamesInfo=make([]*Game,0)
+	for _,ele:=range gameIdArr{
+		s, err :=strconv.ParseInt(ele,10,64)
+		if err==nil {
+			gamesInfo=append(gamesInfo,GetGameInfo(s))
+		}
 	}
-	return nil
+	return
 }
 
 func GetGameInfo(gameId int64) *Game  {
-
-
-	return nil
+	game:=&Game{}
+	dbc:=DBMgr.MySql.Where("id=?",gameId).First(&game)
+	if dbc.Error != nil {
+		return nil
+	}
+	return game
 }

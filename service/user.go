@@ -14,12 +14,12 @@ func Login(name, password, ip string)(error,string)  {
 	//return errors.New("login fail"), "vvv"
 }
 //
-func NewUser(name, password ,nickName string,gender int32) (error, *User) {
+func NewUser(name, password ,nickName string,gender int) (error, *User) {
 	user := &User{
 		Username:    name,
 		Password:	 password,
-		User_sex:  	 gender,
-		Nick_name:   nickName,
+		UserSex:  	 gender,
+		NickName:   nickName,
 	}
 	if len(user.Password) > 0 {
 		user.Password = public.Md5String(user.Password)
@@ -47,12 +47,15 @@ func UpdateUser(name string,ColumnName ,ColumnVal string) (error, *User) {
 	return nil, user
 }
 //
-func GetGamesInfo( userName string) (error error, gameIds []int64) {
-	dbc:=MySql.Table("users").Select("havePlayGameId").Where("username=?",userName)
+func GetGamesInfo( userName string) (error error, gameIds string) {
+	//dbc:=MySql.Raw("select havePlayGameId from users where username=?",userName).Scan(&gameIds)
+	user := &User{	}
+	dbc:=MySql.Where("username = ?", userName).First(&user)
 	if dbc.Error != nil {
-		return dbc.Error,nil
+		return dbc.Error,""
 	}
-	return nil,  dbc.Value.([]int64)
+	gameIds=user.HavePlayGameID
+	return nil,  gameIds
 }
 //
 func GetUserByToken(token string) *User {
