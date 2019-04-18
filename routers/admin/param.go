@@ -23,10 +23,24 @@ type GetUserHavePlayGamesReq struct {
 
 
 //game
-
 type GameAddParamReq struct {
 	Name string 	 `json:"name"`
 	Price int		 `json:"price"`
 	Url string		 `json:"url"`
 	SupplierId int   `json:"supplierId"`
+}
+
+type GameUpdateReqParam struct {
+	ID               int        `json:"id"`
+	Name             string		`json:"name"`            
+	Price            int		`json:"price"`
+	CommentID        int		`json:"commentId"`
+	DownloadQuantity int		`json:"downloadQuantity"`
+	Score            int		`json:"score"`
+	URL              string		`json:"url"`
+	SupplierID       int		`json:"supplierId"`
+}
+
+type GameDeleteReqParam struct {
+	ID               int        `json:"id"`
 }

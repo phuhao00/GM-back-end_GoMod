@@ -13,7 +13,7 @@ import (
 )
 
 //
-func RunListenSystem(router *gin.Engine, serverHost string) {
+func RunBaseWebModule(router *gin.Engine, serverHost string) {
 	server := &http.Server{
 		Addr:    serverHost,
 		Handler: router,

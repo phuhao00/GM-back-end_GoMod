@@ -11,8 +11,8 @@ import (
 
 func InitRouter() *gin.Engine{
 	var E *gin.Engine
-	E=gin.New()
-	//E.Use(gin.Logger())
+		E=gin.New()
+		E.Use(gin.Logger())
 	//E.Use(gin.Recovery())
 	//E.Use(CheckToken())
 	//E.Use(Logger())
@@ -56,5 +56,7 @@ func RegisterCommon(E *gin.Engine)  {
 	{
 		action.POST("getUserHavePlayGames",GetUserPlayedGames)
 		action.POST("AddGame",AddGame)
+		action.POST("UpdateGame",UpdateGame)
+		action.POST("DeleteGame",DeleteGame)
 	}
 }
